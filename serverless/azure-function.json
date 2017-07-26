@@ -3,19 +3,24 @@
     "contentVersion":"1.0.0.0",
     "parameters": {
         "name": {
-            "type": "string"
+            "type": "string",
+            "metadata": {
+                "description": "Name of your azure function, to be changed"
+            },
+            "defaultValue": "FunctionName"
         }
     },
     "variables": {
-        "storageName": "[uniqueString(resourceGroup().id)]"
+        "storageName": "[uniqueString(resourceGroup().id)]",
+        "functionName": "[if(equals(parameters('name'),'FunctionName'), concat('func',uniqueString(resourcegroup().id)), parameters('name'))]"
     }, 
     "resources":[
         {
             "apiVersion": "2016-03-01",
-            "name": "[parameters('name')]",
+            "name": "[variables('functionname')]",
             "type": "Microsoft.Web/sites",
             "properties": {
-                "name": "[parameters('name')]",
+                "name": "[variables('functionName')]",
                 "siteConfig": {
                     "appSettings": [
                         {
