@@ -4,9 +4,6 @@
     "parameters": {
         "name": {
             "type": "string"
-        },
-        "location": {
-            "type": "string"
         }
     },
     "variables": {
@@ -52,14 +49,14 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
             ],
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "kind": "functionapp"
         },
         {
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('storageName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "accountType": "Standard_LRS"
             }
