@@ -5,14 +5,14 @@
         "name": {
             "type": "string",
             "metadata": {
-                "description": "Name of your azure function"
+                "description": "Name of your azure function, to be changed"
             },
             "defaultValue": "FunctionName"
         }
     },
     "variables": {
         "storageName": "[uniqueString(resourceGroup().id)]",
-        "functionName": "[if(equals(parameters('name'),'FunctionName'),concat('func',uniqueString(resourcegroup().id), parameters('name'))]"
+        "functionName": "[if(equals(parameters('name'),'FunctionName'), concat('func',uniqueString(resourcegroup().id)), parameters('name'))]"
     }, 
     "resources":[
         {
