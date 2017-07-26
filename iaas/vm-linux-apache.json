@@ -42,11 +42,7 @@
     }
   },
   "variables": {
-<<<<<<< HEAD
-    "DNSName": "[if(equals(parameters('dnsLabelPrefix'),'DNSLabelPrefix'), uniqueString(resourcegroup().id), parameters('dnsLabelPrefix'))]",
-=======
     "DNSName": "[if(equals(parameters('dnsLabelPrefix'),'DNSLabelPrefix'), concat('vm',uniqueString(resourcegroup().id)), parameters('dnsLabelPrefix'))]",
->>>>>>> testif
     "scenarioPrefix": "lampvm",
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
