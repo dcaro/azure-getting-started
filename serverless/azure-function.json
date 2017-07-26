@@ -4,12 +4,15 @@
     "parameters": {
         "name": {
             "type": "string",
-            "defaultValue": ""
+            "metadata": {
+                "description": "Name of your azure function"
+            },
+            "defaultValue": "FunctionName"
         }
     },
     "variables": {
         "storageName": "[uniqueString(resourceGroup().id)]",
-        "functionName": "[if(parameters('name'),''),concat('func',uniqueString(resourcegroup().id), parameters('name')]"
+        "functionName": "[if(parameters('name'),'FunctionName'),concat('func',uniqueString(resourcegroup().id), parameters('name')]"
     }, 
     "resources":[
         {
