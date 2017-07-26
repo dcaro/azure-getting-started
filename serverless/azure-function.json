@@ -12,7 +12,7 @@
     },
     "variables": {
         "storageName": "[uniqueString(resourceGroup().id)]",
-        "functionName": "[if(equals(parameters('name'),'FunctionName'), concat('func',uniqueString(resourcegroup().id)), parameters('name'))]"
+        "functionName": "[if(equals(parameters('name'),'FunctionName'), parameters('name'), concat('func',uniqueString(resourcegroup().id)))]"
     }, 
     "resources":[
         {
