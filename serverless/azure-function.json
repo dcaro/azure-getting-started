@@ -12,12 +12,12 @@
     },
     "variables": {
         "storageName": "[uniqueString(resourceGroup().id)]",
-        "functionName": "[if(equals(parameters('name'),'FunctionName'), parameters('name'), concat('func',uniqueString(resourcegroup().id)))]"
+        "functionName": "[if(equals(parameters('name'),'FunctionName'), concat('func',uniqueString(resourcegroup().id)), parameters('name'))]"
     }, 
     "resources":[
         {
             "apiVersion": "2016-03-01",
-            "name": "[parameters('name')]",
+            "name": "[variables('functionname')]",
             "type": "Microsoft.Web/sites",
             "properties": {
                 "name": "[variables('functionName')]",
