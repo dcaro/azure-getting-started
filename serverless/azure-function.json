@@ -20,7 +20,7 @@
             "name": "[parameters('name')]",
             "type": "Microsoft.Web/sites",
             "properties": {
-                "name": "[parameters('name')]",
+                "name": "[variables('functionName')]",
                 "siteConfig": {
                     "appSettings": [
                         {
