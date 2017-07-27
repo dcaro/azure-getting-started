@@ -7,24 +7,26 @@
         }
     },
     "variables": {
-        "webSiteName": "uniqueString(ResourceGroup().id)"
+        "webSiteName": "[uniqueString(resourcegroup().id)]"
     },
     "resources": [
 
         {
-        "apiVersion": "2015-05-01",
-        "name": "[concat(paramaters(name)]",
+        "apiVersion": "2014-08-01",
+        "name": "[concat('ai', parameters('name'))]",
         "type": "Microsoft.Insights/components",
-        "location": "centralus",
+        "location": "[resourcegroup().location]",
         "dependsOn": [
-            "[variables('webSiteName')]"
+
         ],
         "tags": {
             "[concat('hidden-link:', resourceId('Microsoft.Web/sites', variables('webSiteName')))]": "Resource",
             "displayName": "AppInsightsComponent"
         },
         "properties": {
-            "ApplicationId": "[variables('webSiteName')]"
+            "ApplicationId": "[variables('webSiteName')]",
+            "Request_Source": "IbizaAIExtension",
+            "Flow_Type": "Redfield"
         }
         }
     ]
