@@ -4,30 +4,37 @@
     "parameters": {
         "name": {
             "type": "string"
+        },
+        "type": {
+            "type": "string"
+        },
+        "hockeyAppToken": {
+            "type": "string"
+        },
+        "hockeyAppId": {
+            "type": "string"
+        },
+        "regionId": {
+            "type": "string"
+        },
+        "requestSource": {
+            "type": "string"
         }
-    },
-    "variables": {
-        "webSiteName": "[uniqueString(resourcegroup().id)]"
     },
     "resources": [
-
         {
-        "apiVersion": "2014-08-01",
-        "name": "[concat('ai', parameters('name'))]",
-        "type": "Microsoft.Insights/components",
-        "location": "[resourcegroup().location]",
-        "dependsOn": [
-
-        ],
-        "tags": {
-            "[concat('hidden-link:', resourceId('Microsoft.Web/sites', variables('webSiteName')))]": "Resource",
-            "displayName": "AppInsightsComponent"
-        },
-        "properties": {
-            "ApplicationId": "[variables('webSiteName')]",
-            "Request_Source": "IbizaAIExtension",
-            "Flow_Type": "Redfield"
-        }
+            "name": "[parameters('name')]",
+            "type": "microsoft.insights/components",
+            "location": "[parameters('regionId')]",
+            "apiVersion": "2014-08-01",
+            "properties": {
+                "ApplicationId": "[parameters('name')]",
+                "Application_Type": "[parameters('type')]",
+                "HockeyAppToken": "[parameters('hockeyAppToken')]",
+                "HockeyAppId": "[parameters('hockeyAppId')]",
+                "Flow_Type": "Redfield",
+                "Request_Source": "[parameters('requestSource')]"
+            }
         }
     ]
 }
